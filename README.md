@@ -9,6 +9,17 @@ For example, here's a flowchart showing the optimal resources and assemblers req
 
 ![2: Base red science for Pyanodons](https://puu.sh/Im6qB/83d13bab31.png)
 
+## Building ##
+
+How to build this. I have zero experience with .NET so everything here might be wrong and/or suboptimal!
+
+* Download and install .NET 4.6 (that was in the `csproj` files) from here: https://dotnet.microsoft.com/en-us/download/dotnet-framework/net46  Choose the "Developer Pack"
+* Convert the projects to the newer "SDK style". (Note, I've already done this on this branch)
+  - Install the upgrade assistant with: `dotnet tool install -g upgrade-assistant`
+  - Run `upgrade-assistant upgrade` in the project's root directory twice, for the `Foreman` project and for `ForemanTest` too. Choose the option to just convert to the SDK style
+* You can now build it with `dotnet build Foreman -c Release -r x64`. Find the output in `Foreman/bin/Release/net461/x64`.
+  - Note: based on the description of the `dotnet build` command, I think it should be `-a x64` and not `-r x64`, but `-r x64` works too and produces less junk. :D
+
 ## Download ##
 
 To download the latest version of Foreman 2.0 please visit the "Releases" tab here on Github and download the "Release.zip" from the latest release.
