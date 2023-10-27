@@ -39,6 +39,7 @@ namespace Foreman
 			InitializeComponent();
 			SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 			RateOptionsTable.AutoSize = false; //simplest way of ensuring the width of the panel remains constant (it needs to be autosized during initialization due to DPI & font scaling)
+			RateOptionsTable.MouseClick += FixedAssemblerInput_Clicked;
 
 			KeyNodeCheckBox.Checked = nodeData.KeyNode;
 			KeyNodeTitleLabel.Visible = nodeData.KeyNode;
@@ -629,6 +630,13 @@ namespace Foreman
 
 				UpdateAssemblerInfo();
 				UpdateBeaconInfo();
+			}
+		}
+
+		private void FixedAssemblerInput_Clicked(object sender, MouseEventArgs e)
+		{
+			if (!FixedAssemblersOption.Checked && FixedAssemblerInput.Bounds.Contains(e.Location)) {
+				FixedAssemblersOption.Checked = true;
 			}
 		}
 

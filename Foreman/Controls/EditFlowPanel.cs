@@ -21,6 +21,8 @@ namespace Foreman
 			RateLabel.Text = string.Format("Item Flowrate (per {0})", myGraphViewer.Graph.GetRateName());
 			FixedFlowInput.Maximum = (decimal)(ProductionGraph.MaxSetFlow * myGraphViewer.Graph.GetRateMultipler());
 
+			RateOptionsTable.MouseClick += FixedFlowInput_Clicked;
+
 			if(node is ReadOnlyPassthroughNode pNode)
 			{
 				SimplePassthroughNodesCheckBox.Checked = pNode.SimpleDraw;
@@ -87,6 +89,13 @@ namespace Foreman
 			{
 				nodeController.SetRateType(updatedRateType);
 				myGraphViewer.Graph.UpdateNodeValues();
+			}
+		}
+
+		private void FixedFlowInput_Clicked(object sender, MouseEventArgs e)
+		{
+			if (!FixedOption.Checked && FixedFlowInput.Bounds.Contains(e.Location)) {
+				FixedOption.Checked = true;
 			}
 		}
 
