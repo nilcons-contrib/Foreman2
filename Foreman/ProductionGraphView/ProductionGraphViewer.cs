@@ -1000,6 +1000,9 @@ namespace Foreman
 				panUnit *= 5;
 			}
 
+			if ((keyData & Keys.KeyCode) == Keys.Escape)
+				ToolTipRenderer.ClearFloatingControls();
+
 			if ((keyData & Keys.KeyCode) == Keys.Left)
 			{
 				foreach (BaseNodeElement node in selectedNodes)
