@@ -76,6 +76,11 @@ namespace Foreman
 		private void FixedOption_CheckChanged(object sender, EventArgs e)
 		{
 			FixedFlowInput.Enabled = FixedOption.Checked;
+			if (FixedOption.Checked) {
+				// Move the cursor to the end of the input field
+				FixedFlowInput.Select(FixedFlowInput.Text.Length, 0);
+				FixedFlowInput.Select();
+			}
 			RateType updatedRateType = (FixedOption.Checked) ? RateType.Manual : RateType.Auto;
 
 			if (nodeData.RateType != updatedRateType)

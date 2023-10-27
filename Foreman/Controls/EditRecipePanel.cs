@@ -614,6 +614,11 @@ namespace Foreman
 		private void FixedAssemblerOption_CheckedChanged(object sender, EventArgs e)
 		{
 			FixedAssemblerInput.Enabled = FixedAssemblersOption.Checked;
+			if (FixedAssemblersOption.Checked) {
+				// Move the cursor to the end of the input field
+				FixedAssemblerInput.Select(FixedAssemblerInput.Text.Length, 0);
+				FixedAssemblerInput.Select();
+			}
 			RateType updatedRateType = (FixedAssemblersOption.Checked) ? RateType.Manual : RateType.Auto;
 
 			if (nodeData.RateType != updatedRateType)
