@@ -993,7 +993,7 @@ namespace Foreman
 		{
 			bool processed = true;
 			int moveUnit = (Grid.CurrentGridUnit > 0) ? Grid.CurrentGridUnit : 6;
-			int panUnit = (int)(10 / ViewScale);
+			int panUnit = (int)(100 / ViewScale);
 			if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift) //large move
 			{
 				moveUnit = (Grid.CurrentMajorGridUnit > Grid.CurrentGridUnit) ? Grid.CurrentMajorGridUnit : moveUnit * 4;
