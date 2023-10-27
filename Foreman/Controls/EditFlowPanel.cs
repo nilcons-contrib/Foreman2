@@ -20,6 +20,10 @@ namespace Foreman
 
 			RateLabel.Text = string.Format("Item Flowrate (per {0})", myGraphViewer.Graph.GetRateName());
 			FixedFlowInput.Maximum = (decimal)(ProductionGraph.MaxSetFlow * myGraphViewer.Graph.GetRateMultipler());
+			FixedFlowInput.KeyDown += (s, e) => {
+				if (e.KeyCode == Keys.Return)
+					graphViewer.ToolTipRenderer.ClearFloatingControls();
+			};
 
 			RateOptionsTable.MouseClick += FixedFlowInput_Clicked;
 

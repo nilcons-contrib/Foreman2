@@ -49,6 +49,10 @@ namespace Foreman
 			LowPriorityCheckBox.Checked = nodeData.LowPriority;
 
 			FixedAssemblerInput.Maximum = (decimal)(ProductionGraph.MaxFactories);
+			FixedAssemblerInput.KeyDown += (s, e) => {
+				if (e.KeyCode == Keys.Return)
+					graphViewer.ToolTipRenderer.ClearFloatingControls();
+			};
 
 			BeaconCountInput.Value = Math.Min(BeaconCountInput.Maximum, (decimal)nodeData.BeaconCount);
 			BeaconsPerAssemblerInput.Value = Math.Min(BeaconsPerAssemblerInput.Maximum, (decimal)nodeData.BeaconsPerAssembler);
