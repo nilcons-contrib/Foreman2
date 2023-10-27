@@ -1219,7 +1219,7 @@ namespace Foreman
 			Invalidate();
 		}
 
-		public async Task LoadFromJson(JObject json, bool useFirstPreset, bool setEnablesFromJson)
+		public void LoadFromJson(JObject json, bool useFirstPreset, bool setEnablesFromJson)
 		{
 			if (json["Version"] == null || (int)json["Version"] != Properties.Settings.Default.ForemanVersion || json["Object"] == null || (string)json["Object"] != "ProductionGraphViewer")
 			{
@@ -1257,7 +1257,7 @@ namespace Foreman
 				Preset savedWPreset = allPresets.FirstOrDefault(p => p.Name == (string)json["SavedPresetName"]);
 				if (savedWPreset != null)
 				{
-					var errors = await PresetProcessor.TestPreset(savedWPreset, modSet, itemNames, assemblerNames, recipeShorts);
+					var errors = PresetProcessor.TestPreset(savedWPreset, modSet, itemNames, assemblerNames, recipeShorts);
 					if (errors != null && errors.ErrorCount == 0) //no errors found here. We will then use this exact preset and not search for a different one
 						chosenPreset = savedWPreset;
 					else
@@ -1274,7 +1274,7 @@ namespace Foreman
 				{
 					foreach (Preset preset in allPresets)
 					{
-						PresetErrorPackage errors = await PresetProcessor.TestPreset(preset, modSet, itemNames, assemblerNames, recipeShorts);
+						PresetErrorPackage errors = PresetProcessor.TestPreset(preset, modSet, itemNames, assemblerNames, recipeShorts);
 						if (errors != null)
 							presetErrors.Add(errors);
 					}

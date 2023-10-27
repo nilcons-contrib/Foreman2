@@ -455,8 +455,6 @@ namespace Foreman
 						recipe = missingRecipe;
 					}
 				}
-				if (recipeLinks.ContainsKey(recipeShort.RecipeID))
-					;
 				recipeLinks.Add(recipeShort.RecipeID, recipe);
 			}
 			return recipeLinks;

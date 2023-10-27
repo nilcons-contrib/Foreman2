@@ -182,11 +182,11 @@ namespace Foreman
 			LoadGraph(dialog.FileName);
 		}
 
-		private async void LoadGraph(string path)
+		private void LoadGraph(string path)
 		{
 			try
 			{
-				await GraphViewer.LoadFromJson(JObject.Parse(File.ReadAllText(path)), false, true);
+				GraphViewer.LoadFromJson(JObject.Parse(File.ReadAllText(path)), false, true);
 				savefilePath = path;
 			}
 			catch (Exception exception)
@@ -332,7 +332,7 @@ namespace Foreman
 			return presets;
 		}
 
-		private async void SettingsButton_Click(object sender, EventArgs e)
+		private void SettingsButton_Click(object sender, EventArgs e)
 		{
 			SettingsForm.SettingsFormOptions options = new SettingsForm.SettingsFormOptions(GraphViewer.DCache);
 
@@ -389,7 +389,7 @@ namespace Foreman
 						Properties.Settings.Default.UseRecipeBWfilters = options.DEV_UseRecipeBWFilters;
 
 						List<Preset> validPresets = GetValidPresetsList();
-						await GraphViewer.LoadFromJson(JObject.Parse(JsonConvert.SerializeObject(GraphViewer)), true, false);
+						GraphViewer.LoadFromJson(JObject.Parse(JsonConvert.SerializeObject(GraphViewer)), true, false);
 						this.Text = string.Format("Foreman 2.0 ({0}) - {1}", Properties.Settings.Default.CurrentPresetName, savefilePath ?? "Untitled");
 					}
 					else //not loading a new preset -> update the enabled statuses
